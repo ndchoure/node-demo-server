@@ -1,6 +1,6 @@
 module.exports = function(router) {
 
-    var media = require('../controllers/media_type.controller.js');
+    const media = require('../controllers/media_type.controller.js');
 
     router.route('/media_types')
     // Create a new Media Type

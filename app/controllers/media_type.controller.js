@@ -1,13 +1,13 @@
-var MediaType = require('../models/media_type.js');
+const MediaType = require('../models/media_type.js');
 
-exports.create = function(req, res) {
+exports.create = (req, res) => {
     // Create and Save a new Media Type
     if(!req.body.content) {
         res.status(400).send({message: "Media Type can not be empty"});
     }
     let media = new MediaType({name: req.body.name, description: req.body.description});
 
-    media.save(function(err, data) {
+    media.save((err, data) => {
         console.log(data);
         if(err) {
             console.log(err);
@@ -18,9 +18,17 @@ exports.create = function(req, res) {
     });
 };
 
-exports.findAll = function(req, res) {
+exports.findAll = (req, res) => {
     // Retrieve and return all media types from the database.
-    MediaType.find(function(err, media_types){
+    let sort = req.params.sort || '_id';
+    let order = req.params.order || -1
+    MediaType
+    .find()
+    .sort({ sort : order})
+    .limit(req.params.limit || 25)
+    .skip(req.params.offset || 0)
+    .maxScan(100)
+    .exec((err, media_types) => {
         if(err) {
             res.status(500).send({message: "Some error occurred while retrieving media types."});
         } else {
@@ -29,9 +37,9 @@ exports.findAll = function(req, res) {
     });
 };
 
-exports.findOne = function(req, res) {
+exports.findOne = (req, res) => {
     // Find a single media type with a id
-    MediaType.findById(req.params.id, function(err, data) {
+    MediaType.findById(req.params.id, (err, data) => {
         if(err) {
             res.status(500).send({message: "Could not retrieve media type with id " + req.params.id});
         } else {
@@ -40,9 +48,9 @@ exports.findOne = function(req, res) {
     });
 };
 
-exports.update = function(req, res) {
+exports.update = (req, res) => {
     // Update a media type identified by the id in the request
-    MediaType.findById(req.params.noteId, function(err, media_type) {
+    MediaType.findById(req.params.noteId, (err, media_type) => {
         if(err) {
             res.status(500).send({message: "Could not find a media type with id " + req.params.id});
         }
@@ -50,7 +58,7 @@ exports.update = function(req, res) {
         media_type.name = req.body.name;
         media_type.description = req.body.description;
 
-        media_type.save(function(err, data){
+        media_type.save((err, data) => {
             if(err) {
                 res.status(500).send({message: "Could not update media type with id " + req.params.id});
             } else {
@@ -60,9 +68,9 @@ exports.update = function(req, res) {
     });
 };
 
-exports.delete = function(req, res){
+exports.delete = (req, res) => {
     //Delete a media type with the specified id in the request
-    MediaType.remove({_id: req.params.id}, function(err, data) {
+    MediaType.remove({_id: req.params.id}, (err, data) => {
         if(err) {
             res.status(500).send({message: "Could not delete media type with id " + req.params.id}); 
         } else {

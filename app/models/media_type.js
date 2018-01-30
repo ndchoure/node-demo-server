@@ -1,8 +1,8 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-var MediaTypeSchema = mongoose.Schema(
+const MediaTypeSchema = new mongoose.Schema(
     {
-        name: String,
+        name: {type:String, unique:true},
         description: String,
         image: String
     },

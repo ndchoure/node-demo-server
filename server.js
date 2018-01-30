@@ -62,6 +62,6 @@ require('./app/routes/media_type.routes.js')(router);
 
 // listen for requests
 app.listen(app.get('port'), () => {
-    console.log("Adoptions server is listening on port " + app.get('port'));
+    console.log(`Adoptions server is listening on port  ${app.get('port')}`);
     console.log('Press CTRL-C to stop\n');
 });

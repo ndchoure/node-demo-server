@@ -39,7 +39,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // parse requests of content-type - application/json
 app.use(bodyParser.json())
 
-app.use(looger('dev'));
+app.use(logger('dev'));
 app.use(errorHandler());
 
 //Define middleware to use for all requests

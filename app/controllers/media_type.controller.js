@@ -20,7 +20,7 @@ exports.create = (req, res) => {
 
 exports.findAll = (req, res) => {
     // Retrieve and return all media types from the database.
-    let sort = req.params.sort || _id;
+    let sort = req.params.sort || '_id';
     let order = req.params.order || -1
     MediaType
     .find()

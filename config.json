@@ -1,0 +1,9 @@
+{
+    "db": {
+        "mlab_url": "mongodb://test:password@ds119018.mlab.com:19018/adoptionsdb"
+    },
+    "server": {
+        "host": "0.0.0.0",
+        "port": 8080
+    }
+}

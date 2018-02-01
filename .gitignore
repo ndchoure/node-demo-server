@@ -58,4 +58,7 @@ typings/
 .env
 
 #configuration files
-config/config.js
+
+#directories
+dist/**/*
+.vscode

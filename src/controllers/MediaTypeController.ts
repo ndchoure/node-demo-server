@@ -13,7 +13,7 @@ export default class MediaTypeExporter {
                     console.log(err);
                     res.status(500).send({message: "Some error occurred while creating the Media Type."});
                 } else {
-                    res.send(data);
+                    res.status(201).send(data);
                 }
             });
         }
@@ -32,7 +32,7 @@ export default class MediaTypeExporter {
                 console.log(err);
                 res.status(500).send({message: "Some error occurred while retrieving media types."});
             } else {
-                res.send(media_types);
+                res.status(200).send(media_types);
             }
         });
     }

@@ -1,7 +1,7 @@
 import { Router } from "express";
 import MediaTypeController from "../controllers/MediaTypeController";
 
-export class MediaTypeRouter {
+class MediaTypeRouter {
     router: Router;
     media: MediaTypeController;
     constructor() {
@@ -26,5 +26,4 @@ export class MediaTypeRouter {
     }
 }
 
-const mediaTypeRouter = new MediaTypeRouter();
-export default mediaTypeRouter.router;
+export default new MediaTypeRouter().router;
